@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+import threading
 # from super_gradients.training import models
 import cv2
 import numpy as np
@@ -17,13 +18,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)  
 
-# Dictionary to store the base path for each user
-USER_BASE_PATHS = {
-    'dimitris': '/home/dimitris/projects/hipeac',
-    'spyros': '/home/spyros/Workspace',
-}
-user_id = os.getlogin()
-BASE_PATH = USER_BASE_PATHS.get(user_id, '/default/path')
+BASE_PATH = os.path.dirname(__file__)  # Get the directory of the current file
 
 
 def process_predictions(model_result):
@@ -96,11 +91,30 @@ def convert_txt_to_json(txt_file_path, image_width, image_height):
                 data.append({"points": point_objects, "label": "Uknown"})
     return jsonify(data)
 
+# Test endpoint
+@app.route('/test_endpoint', methods=['GET'])
+def test_endpoint():
+    return jsonify({"message": "Test successful!"})
+
+
+def make_request_periodically():
+    while True:
+        try:
+            response = requests.get('http://localhost:5000/test_endpoint')  # Assuming your Flask app runs locally on port 5000
+            if response.status_code == 200:
+                app.logger.info("Successfully made request to /test_endpoint")
+            else:
+                app.logger.error(f"Failed to make request to /test_endpoint. Status code: {response.status_code}")
+        except Exception as e:
+            app.logger.error(f"Error making request to /test_endpoint: {str(e)}")
+        
+        time.sleep(300)  # Sleep for 5 minutes (300 seconds)
+
 
 @app.route('/predict_rooms', methods=['POST'])
 def predict_rooms():
     try:
-        model_path = os.path.join(BASE_PATH, "Indoor-Navigation/software/web interface/models/best.pt")
+        model_path = os.path.join(BASE_PATH, "models", "best.pt")
         
         data = request.get_json()
 
@@ -225,4 +239,5 @@ def post_user_feedback():
 
 
 if __name__ == '__main__':
+    threading.Thread(target=make_request_periodically, daemon=True).start()
     app.run(debug=True)
