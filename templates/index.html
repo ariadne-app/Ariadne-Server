@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Indoor Navigation</title>
+
+    <!-- Link to external Files -->
+    <link rel="stylesheet" href="assets/css/index.css">
+    <link rel="icon" href="assets/images/icon.webp" type="image/x-icon">
+</head>
+<body>
+    <h1 style="white-space: pre;">👣   INDOOR NAVIGATI🧭N   📌 </h1>
+    <h2 id="distance-display">Distance:   0.00 meters</h2>
+    
+    <div class="container" id="canvas-container">
+        <img id="main-image" src="assets/images/floor_plan_1.jpg" alt="Sample Image" draggable="false">
+        <canvas id="line-canvas"></canvas>
+    
+        <!-- use points -->
+        <div class="point" id="point1" style="top: 120px; left: 190px;"></div>
+        <div class="point" id="point2" style="top: 500px; left: 150px;"></div>
+
+        <!-- use emojis -->
+        <!-- <div class="emoji-point" id="point1" style="top: 120px; left: 190px;">📱</div>
+        <div class="emoji-point" id="point2" style="top: 500px; left: 150px;">🏁</div>     -->
+    </div>
+    
+    
+    <div class="switch-container">
+        <label for="smooth-curve-switch" class="label-text">Curve</label>
+        <!-- switch is defined in assets/css/index.css -->
+        <label class="switch">
+            <input type="checkbox" id="smooth-curve-switch" unchecked>
+            <span class="slider round"></span>
+        </label>
+    </div>
+
+    <script src="/assets/js/navigation.js"></script>
+</body>
+</html>

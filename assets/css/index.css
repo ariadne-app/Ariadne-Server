@@ -1,0 +1,147 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin-top: 50px;
+    position: relative;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    text-decoration: none;
+    border: none;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.container {
+    position: relative;
+    display: inline-block;
+    user-select: none;
+}
+
+.emoji-point {
+    font-size: 24px; /* Adjust the size of the emoji */
+    position: absolute;
+    cursor: grab;
+    touch-action: none;
+    user-select: none;
+    transition: transform 0.2s; /* Adds a smooth transition effect */
+}
+
+.emoji-point:hover {
+    transform: scale(1.2);
+}
+
+.emoji-point:active {
+    cursor: grabbing;
+}
+
+.point {
+    width: 15px;
+    height: 15px;
+    background-color: rgb(255, 100, 100);
+    border-radius: 50%;
+    position: absolute;
+    cursor: grab;
+    touch-action: none;
+    user-select: none;
+    /* Additional styles */
+    border: 2px solid white; /* Adds a white border around the point */
+    box-shadow: 0 0 10px rgba(91, 74, 190, 0.377); /* Adds a shadow effect */
+    transition: transform 0.2s; /* Adds a smooth transition effect */
+}
+
+.point:hover {
+    transform: scale(1.2); /* Scales the point up when hovered */
+}
+
+.point:active {
+    cursor: grabbing; /* Changes cursor to grabbing when active */
+}
+
+canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+
+#distance-display {
+    font-family: 'Courier New', Courier, monospace; /* Use a monospaced font */
+    white-space: pre; /* Preserve whitespace */
+}
+
+
+/* Container styling for horizontal alignment */
+.switch-container {
+    display: flex;
+    align-items: center; /* Vertically aligns items in the center */
+    justify-content: center; /* Centers content horizontally */
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+/* Style for the label */
+.label-text {
+    font-size: 16px;
+    margin-right: 10px;
+}
