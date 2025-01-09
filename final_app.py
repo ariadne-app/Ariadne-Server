@@ -102,7 +102,7 @@ def test_endpoint():
 def make_request_periodically():
     while True:
         try:
-            response = requests.get('http://127.0.0.1:5000/test_endpoint')  # Assuming your Flask app runs locally on port 5000
+            response = requests.get('http://127.0.0.1/test_endpoint')  # Assuming your Flask app runs locally on port 5000
             if response.status_code == 200:
                 app.logger.info("Successfully made request to /test_endpoint")
             else:
@@ -242,5 +242,4 @@ def post_user_feedback():
 
 if __name__ == '__main__':
     threading.Thread(target=make_request_periodically, daemon=True).start()
-    port = int(os.environ.get("PORT", 5000))
-    app.run(debug=True, host="0.0.0.0", port=port)
+    app.run(debug=True)
