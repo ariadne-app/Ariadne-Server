@@ -9,3 +9,4 @@ Shapely
 scipy
 pickle-mixin
 ultralytics
+inference_sdk
