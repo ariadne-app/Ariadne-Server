@@ -102,7 +102,7 @@ def test_endpoint():
 def make_request_periodically():
     while True:
         try:
-            response = requests.get('http://127.0.0.1/test_endpoint')  # Assuming your Flask app runs locally on port 5000
+            response = requests.get('http://127.0.0.1:{}/test_endpoint'.format(int(os.environ.get("PORT", 5000))))  # Assuming your Flask app runs locally on port 5000
             if response.status_code == 200:
                 app.logger.info("Successfully made request to /test_endpoint")
             else:
