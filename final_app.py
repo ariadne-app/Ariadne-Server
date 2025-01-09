@@ -18,7 +18,7 @@ from ultralytics import YOLO
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app, origins=["http://localhost:3000", "https://ariadne-admin.web.app"])
+CORS(app, origins=["http://localhost:3000", "https://ariadne-admin.web.app", '*'])
 
 BASE_PATH = os.path.dirname(__file__)  # Get the directory of the current file
 
