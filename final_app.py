@@ -100,7 +100,7 @@ def test_endpoint():
 def make_request_periodically():
     while True:
         try:
-            response = requests.get('http://localhost:5000/test_endpoint')  # Assuming your Flask app runs locally on port 5000
+            response = requests.get('http://127.0.0.1:5000/test_endpoint')  # Assuming your Flask app runs locally on port 5000
             if response.status_code == 200:
                 app.logger.info("Successfully made request to /test_endpoint")
             else:
@@ -189,7 +189,7 @@ def predict_rooms():
 @app.route('/predict_doors_yolo11', methods=['POST'])
 def predict_doors_yolo11():
 
-    model_path = os.path.join(BASE_PATH, "Indoor-Navigation/software/web interface/models/full_set_menu-yolo11m_plus2.pt")
+    model_path = os.path.join(BASE_PATH, "models", "full_set_menu-yolo11m_plus2.pt")
 
     data = request.get_json()
 
