@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 import threading
 import time
+import requests
 # from super_gradients.training import models
 import cv2
 import numpy as np
