@@ -240,4 +240,4 @@ def post_user_feedback():
 
 if __name__ == '__main__':
     threading.Thread(target=make_request_periodically, daemon=True).start()
-    app.run(debug=True)
+    app.run(debug=True, port=5000)
