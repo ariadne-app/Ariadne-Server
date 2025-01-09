@@ -136,7 +136,7 @@ def predict_rooms():
 
         height, width, _ = image.shape
 
-        temp_path = os.path.join(BASE_PATH, "Indoor-Navigation/software/web interface/assets/temp_images")
+        temp_path = os.path.join(BASE_PATH, "assets", "temp_images")
         temp_image_path = os.path.join(temp_path, 'temp_image_rooms.jpg')
     
         success = cv2.imwrite(temp_image_path, image)
@@ -225,7 +225,7 @@ def post_user_feedback():
     rooms = data['rooms']
     pixels_to_cm = float(data['distancePerPixel'])*100.0
 
-    image_path = os.path.join(BASE_PATH, "Indoor-Navigation/software/web interface/assets/temp_images/temp_image_rooms.jpg")
+    image_path = os.path.join(BASE_PATH, "assets", "temp_images", "temp_image_rooms.jpg") 
 
     navigation = Indoor_Navigation(image_path)
     navigation.calibrate(pixels_to_cm)
